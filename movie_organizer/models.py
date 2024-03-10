@@ -12,6 +12,25 @@ class Genre(models.Model):
         return f"{self.name}"
 
 
+class Rating(models.Model):
+    id: Union[int, models.BigAutoField, None] = models.BigAutoField(primary_key=True)
+    name = models.CharField(max_length=100, unique=True)
+    rating_value =  models.DecimalField(max_digits=2, decimal_places=1, choices=[
+        (1.0, '1.0'),
+        (1.5, '1.5'),
+        (2.0, '2.0'),
+        (2.5, '2.5'),
+        (3.0, '3.0'),
+        (3.5, '3.5'),
+        (4.0, '4.0'),
+        (4.5, '4.5'),
+        (5.0, '5.0'),
+    ])
+
+    def __str__(self):
+        return f"{self.name} - {self.rating_value}"
+
+
 class Cast(models.Model):
     id: Union[int, models.BigAutoField, None] = models.BigAutoField(primary_key=True)
     name = models.CharField(max_length=100, unique=True)
@@ -29,7 +48,7 @@ class Movie(models.Model):
     cast = models.ManyToManyField(Cast, through='Role', related_name='movies')
 
     def __str__(self):
-        return f"{self.title}"
+        return f"{self.title}" # what to show when on the django admin
 
 
 class Role(models.Model):

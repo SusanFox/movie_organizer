@@ -1,0 +1,27 @@
+{% extends "blog/base.html" %}
+{% block content %}
+<h1>About Page</h1>
+    {% for post in posts %}
+        <h1>{{ post.title }}</h1>
+        <p>{{ post.author }} on {{ post.date_posted }}</p>
+        <p>{{ post.content }}</p>
+    {% endfor %}
+{% endblock content %}   
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    {% if title %}
+    <title>Movie Organizer Blog - {{ title }}</title>
+{% else %}
+    <title>Movie Organizer Blog</title>   
+{% endif %}
+</head>
+<body>
+    <h1>About Page</h1>
+    <h2></h2>
+</body>    
+</html>  
